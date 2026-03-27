@@ -473,9 +473,28 @@ section { position: relative; padding: 88px 0; }
   .proof-timeline { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .container { padding: 0 16px; }
-  .partner-logo-strip { gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  /* Nav - match Virlo's mobile nav */
+  .nav-inner {
+    padding: 0 16px !important;
+    height: 56px !important;
+    border-radius: 12px !important;
+  }
+  .nav-logo img { height: 22px !important; }
+  .nav-cta { padding: 8px 16px !important; font-size: 13px !important; }
+
+  /* Partner logo strip - hide dividers, keep compact */
+  .partner-logo-strip {
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .partner-divider { display: none !important; }
+  .partner-logo-strip img { height: 20px !important; }
+  .matt-badge { font-size: 12px !important; padding: 6px 12px !important; }
 
   /* Hero */
+  #overview { padding-top: 100px !important; }
   .hero-headline { font-size: 36px !important; letter-spacing: -1.5px !important; }
   .hero-sub { font-size: 16px !important; margin-bottom: 24px !important; }
 
@@ -489,11 +508,16 @@ section { position: relative; padding: 88px 0; }
   /* Section padding */
   section { padding-top: 48px !important; padding-bottom: 48px !important; }
 
-  /* Stat cards: 4-col → 2-col */
+  /* Stat cards: 4-col → 2-col, full width */
   [style*="grid-template-columns: repeat(4, 1fr)"] {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;
+    max-width: 100% !important;
   }
+
+  /* Stat number size down */
+  .stat-number { font-size: 32px !important; }
+  .stat-card { padding: 20px 16px !important; }
 
   /* 2-col content grids → single column */
   [style*="grid-template-columns: 1fr 1fr"] {
@@ -547,6 +571,12 @@ section { position: relative; padding: 88px 0; }
     gap: 32px !important;
   }
 
+  /* Buttons full width on mobile */
+  .btn-primary, .btn-ghost {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   /* Footer flex */
   [style*="display: flex; align-items: center; justify-content: space-between"] {
     flex-direction: column !important;
@@ -560,18 +590,13 @@ section { position: relative; padding: 88px 0; }
   .section-headline { font-size: 22px !important; }
   .featured-number { font-size: 36px !important; }
 
-  /* Stat cards: 2-col → single column on very small screens */
-  [style*="grid-template-columns: repeat(4, 1fr)"] {
-    grid-template-columns: 1fr !important;
-  }
+  /* Stat cards: 2-col stays on small screens, full width */
+  .stat-number { font-size: 26px !important; }
 
   /* Brand cards: 2-col → single column */
   [style*="grid-template-columns: repeat(3, 1fr)"] {
     grid-template-columns: 1fr !important;
   }
-
-  .partner-logo-strip img { height: 22px !important; }
-  .matt-badge { font-size: 12px !important; padding: 6px 12px !important; }
 }
 
 /* ─── Featured number hero ─── */
