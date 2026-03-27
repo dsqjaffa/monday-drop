@@ -35,13 +35,14 @@
 }
 
 /* ─── Base ─── */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background-color: var(--color-surface);
   color: var(--text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 ::selection { background: rgba(236,53,134,0.25); }
 button, a { font-family: inherit; }
@@ -499,6 +500,9 @@ section { position: relative; padding: 88px 0; }
   .nav-links { display: none; }
   .container { padding: 0 16px; }
 
+  /* Hide decorative orbs on mobile - they cause overflow */
+  .orb { display: none !important; }
+
   /* Nav - match Virlo's mobile nav */
   .nav-inner {
     padding: 0 16px !important;
@@ -596,6 +600,18 @@ section { position: relative; padding: 88px 0; }
   /* Proof case study timeline gap */
   [style*="gap: 72px"] {
     gap: 32px !important;
+  }
+
+  /* Template boxes - prevent overflow */
+  .template-box {
+    font-size: 12px !important;
+    padding: 16px !important;
+    word-break: break-word !important;
+  }
+
+  /* Glass cards - full width */
+  .glass-card {
+    max-width: 100% !important;
   }
 
   /* Buttons full width on mobile */
