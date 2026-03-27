@@ -491,6 +491,14 @@ section { position: relative; padding: 88px 0; }
 }
 .dimension-item:last-child { border-bottom: none; }
 
+/* ─── Problem section grids ─── */
+.problem-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+}
+.trigger-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+
 /* ─── Proof timeline ─── */
 .proof-timeline {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
@@ -827,7 +835,7 @@ section { position: relative; padding: 88px 0; }
       </div>
     </div>
 
-    <div class="problem-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;">
+    <div class="problem-grid">
 
             <div>
         <h2 class="section-headline">
@@ -855,7 +863,7 @@ section { position: relative; padding: 88px 0; }
           </p>
         </div>
 
-                <div class="trigger-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="trigger-grid">
           <div class="trigger-card">
             <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent-purple); text-transform: uppercase; margin-bottom: 6px;">Trigger 1</div>
             <div style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Identity Validation</div>
@@ -1792,7 +1800,12 @@ Then show me:
 <script>
 // ─── FORCE SCROLL TO TOP ON LOAD ───
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+// Clear any hash that would cause auto-scroll
+if (window.location.hash) history.replaceState(null, '', window.location.pathname);
 window.scrollTo(0, 0);
+// Also fire after browser paint to override any late scroll restoration
+window.addEventListener('load', function() { window.scrollTo(0, 0); });
+setTimeout(function() { window.scrollTo(0, 0); }, 50);
 
 // ─── MOBILE MENU ───
 function toggleMobileMenu() {
