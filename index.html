@@ -520,6 +520,21 @@ section { position: relative; padding: 88px 0; }
     grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
+  .brand-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Force ALL children to respect viewport width */
+  section, .container, .problem-grid, .glass-card, .callout-box, .trigger-card, .brand-card, .template-box {
+    max-width: 100vw !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+  }
+  #problem .container {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
 
   /* Nav - match Virlo's mobile nav */
   .nav-inner {
@@ -889,7 +904,7 @@ section { position: relative; padding: 88px 0; }
 
             <div>
         <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 20px;">Personal brands that solved it</div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+        <div class="brand-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
 
           <div class="brand-card">
             <div class="brand-avatar" style="background: linear-gradient(135deg, #ec3586, #a78bfa);">
