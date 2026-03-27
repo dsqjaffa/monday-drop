@@ -141,6 +141,31 @@ img { display: block; }
 }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 1px 0 0 rgba(255,255,255,0.1) inset, 0 6px 20px rgba(236,53,134,0.4), 0 2px 4px rgba(0,0,0,0.3); }
 
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column; gap: 5px; background: none; border: none;
+  cursor: pointer; padding: 8px; border-radius: 8px;
+}
+.nav-hamburger span {
+  display: block; width: 20px; height: 2px; background: var(--text-primary);
+  border-radius: 2px; transition: all 0.2s;
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 100;
+  background: var(--color-surface);
+  flex-direction: column;
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.mobile-menu.open { display: flex; opacity: 1; }
+.mobile-menu-link {
+  display: block; padding: 16px 0; font-size: 18px; font-weight: 600;
+  color: var(--text-primary); text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
 /* ─── Layout ─── */
 #root { position: relative; z-index: 1; }
 .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
@@ -482,6 +507,7 @@ section { position: relative; padding: 88px 0; }
   }
   .nav-logo img { height: 22px !important; }
   .nav-cta { padding: 8px 16px !important; font-size: 13px !important; }
+  .nav-hamburger { display: flex !important; }
 
   /* Partner logo strip - hide dividers, keep compact */
   .partner-logo-strip {
@@ -509,10 +535,11 @@ section { position: relative; padding: 88px 0; }
   section { padding-top: 48px !important; padding-bottom: 48px !important; }
 
   /* Stat cards: 4-col → 2-col, full width */
-  [style*="grid-template-columns: repeat(4, 1fr)"] {
+  .stat-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
   /* Stat number size down */
@@ -591,6 +618,11 @@ section { position: relative; padding: 88px 0; }
   .featured-number { font-size: 36px !important; }
 
   /* Stat cards: 2-col stays on small screens, full width */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
   .stat-number { font-size: 26px !important; }
 
   /* Brand cards: 2-col → single column */
@@ -681,9 +713,31 @@ section { position: relative; padding: 88px 0; }
       <a href="#proof" class="nav-link">Proof</a>
       <a href="#try-it" class="nav-link">Try It</a>
     </div>
-    <a href="https://dev.virlo.ai/?via=organic" class="nav-cta">Get API Access</a>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="https://dev.virlo.ai/?via=organic" class="nav-cta">Get API Access</a>
+      <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </nav>
+
+<div id="mobile-menu" class="mobile-menu">
+  <div style="display: flex; justify-content: flex-end; padding: 20px 20px 0;">
+    <button onclick="toggleMobileMenu()" style="background: none; border: none; color: var(--text-primary); font-size: 28px; cursor: pointer; padding: 8px;">&times;</button>
+  </div>
+  <div style="display: flex; flex-direction: column; padding: 32px 24px; gap: 8px;">
+    <a href="#overview" class="mobile-menu-link" onclick="toggleMobileMenu()">Overview</a>
+    <a href="#problem" class="mobile-menu-link" onclick="toggleMobileMenu()">The Problem</a>
+    <a href="#system" class="mobile-menu-link" onclick="toggleMobileMenu()">The System</a>
+    <a href="#prompts" class="mobile-menu-link" onclick="toggleMobileMenu()">Prompts</a>
+    <a href="#proof" class="mobile-menu-link" onclick="toggleMobileMenu()">Proof</a>
+    <a href="#try-it" class="mobile-menu-link" onclick="toggleMobileMenu()">Try It</a>
+  </div>
+  <div style="padding: 24px; margin-top: auto;">
+    <a href="https://dev.virlo.ai/?via=organic" class="btn-primary" style="width: 100%; justify-content: center;" onclick="toggleMobileMenu()">Get API Access</a>
+  </div>
+</div>
 
 <div id="root">
 
@@ -718,7 +772,7 @@ section { position: relative; padding: 88px 0; }
       <a href="#system" class="btn-ghost">See How It Works</a>
     </div>
 
-        <div class="fade-in fade-in-delay-4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 960px; margin: 0 auto;">
+        <div class="fade-in fade-in-delay-4 stat-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 960px; margin: 0 auto;">
       <div class="stat-card">
         <div class="stat-number">11M+</div>
         <div class="stat-label">Views in under a month</div>
@@ -1715,6 +1769,23 @@ Then show me:
 
 </div>
 <script>
+// ─── FORCE SCROLL TO TOP ON LOAD ───
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
+// ─── MOBILE MENU ───
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var body = document.body;
+  if (menu.classList.contains('open')) {
+    menu.classList.remove('open');
+    body.style.overflow = '';
+  } else {
+    menu.classList.add('open');
+    body.style.overflow = 'hidden';
+  }
+}
+
 // ─── NAV SCROLL ───
 (function() {
   const navInner = document.getElementById('nav-inner');
