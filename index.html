@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 <title>The Monday Drop — Built by Matt Berman on Virlo API + OpenClaw</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -168,9 +168,9 @@ img { display: block; }
 }
 
 /* ─── Layout ─── */
-#root { position: relative; z-index: 1; }
-.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-section { position: relative; padding: 88px 0; }
+#root { position: relative; z-index: 1; width: 100%; overflow-x: hidden; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+section { position: relative; padding: 88px 0; width: 100%; overflow-x: hidden; }
 
 /* ─── Glow divider ─── */
 .glow-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(236,53,134,0.3), transparent); }
@@ -523,6 +523,14 @@ section { position: relative; padding: 88px 0; }
   .brand-grid {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
+  }
+  /* Fix: grid items must shrink below content width */
+  .brand-card, .problem-grid > div, .brand-grid > div {
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .thumb-strip {
+    max-width: 100% !important;
   }
 
   /* Force ALL children to respect viewport width */
