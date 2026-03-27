@@ -472,8 +472,106 @@ section { position: relative; padding: 88px 0; }
 @media (max-width: 768px) {
   .proof-timeline { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .container { padding: 0 20px; }
-  .partner-logo-strip { gap: 16px; }
+  .container { padding: 0 16px; }
+  .partner-logo-strip { gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  /* Hero */
+  .hero-headline { font-size: 36px !important; letter-spacing: -1.5px !important; }
+  .hero-sub { font-size: 16px !important; margin-bottom: 24px !important; }
+
+  /* Section headers */
+  .section-headline { font-size: 26px !important; letter-spacing: -0.5px !important; }
+  .section-subline { font-size: 15px !important; }
+
+  /* Featured number */
+  .featured-number { font-size: 48px !important; letter-spacing: -2px !important; }
+
+  /* Section padding */
+  section { padding-top: 48px !important; padding-bottom: 48px !important; }
+
+  /* Stat cards: 4-col → 2-col */
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* 2-col content grids → single column */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Brand cards: 3-col → 2-col */
+  [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Pipeline: horizontal → vertical, hide connectors */
+  [style*="display: flex; align-items: stretch; gap: 0"] {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  [style*="display: flex; align-items: center; padding: 0 8px"] {
+    display: none !important;
+  }
+
+  /* Stage detail cards: 2x2 → single column */
+  [style*="display: grid; grid-template-columns: 1fr 1fr; gap: 24px"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Pipeline wrapper padding */
+  [style*="padding: 40px; margin-bottom: 56px"] {
+    padding: 20px !important;
+  }
+
+  /* Prompt cards */
+  [style*="display: flex; flex-direction: column; gap: 32px"] {
+    gap: 20px !important;
+  }
+
+  /* CTA section */
+  [style*="font-size: 56px"] {
+    font-size: 32px !important;
+  }
+
+  /* Proof big number section */
+  [style*="padding: 64px 48px"] {
+    padding: 32px 20px !important;
+  }
+
+  /* Proof case study timeline gap */
+  [style*="gap: 72px"] {
+    gap: 32px !important;
+  }
+
+  /* Footer flex */
+  [style*="display: flex; align-items: center; justify-content: space-between"] {
+    flex-direction: column !important;
+    gap: 16px !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline { font-size: 28px !important; }
+  .section-headline { font-size: 22px !important; }
+  .featured-number { font-size: 36px !important; }
+
+  /* Stat cards: 2-col → single column on very small screens */
+  [style*="grid-template-columns: repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Brand cards: 2-col → single column */
+  [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .partner-logo-strip img { height: 22px !important; }
+  .matt-badge { font-size: 12px !important; padding: 6px 12px !important; }
 }
 
 /* ─── Featured number hero ─── */
